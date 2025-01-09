@@ -112,8 +112,21 @@ public class Network {
      * The user who appears the most in the follow lists of all the users.
      */
     public String mostPopularUser() {
+        if (userCount == 0) {
+            return null;
+
+        }
+        String mostPop = "";
+        int counter = 0;
+        for (int i = 0; i < userCount; i++) {
+            int counter1 = followeeCount(users[i].getName());
+            if (counter1 > counter) {
+                counter = counter1;
+                mostPop = users[i].getName();
+            }
+        }
         //// Replace the following statement with your code
-        return null;
+        return mostPop;
     }
 
     /**
@@ -122,14 +135,25 @@ public class Network {
      * the users in this network. Note: A name can appear 0 or 1 times in each list.
      */
     private int followeeCount(String name) {
+        int counter = 0;
+
+        for (int i = 0; i < userCount; i++) {
+            if (users[i].follows(name)) {
+                counter++;
+
+            }
+        }
         //// Replace the following statement with your code
-        return 0;
+        return counter;
     }
 
     // Returns a textual description of all the users in this network, and who they
     // follow.
     public String toString() {
-        //// Replace the following statement with your code
-        return null;
+        String galTheTarnegol = "Network:";
+        for (int i = 0; i < userCount; i++) {
+            galTheTarnegol += "\n" + users[i].toString();
+        }
+        return galTheTarnegol;
     }
 }
