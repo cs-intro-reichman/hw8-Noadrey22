@@ -1,5 +1,6 @@
 public class LocalTester {
     public static TestHandler testHandler = new TestHandler();
+
     public static void main(String[] args) {
         StdOut.println("Welcome to the Localized Tester!");
         TesterQuestionEnum questionSelected = null;
@@ -14,15 +15,15 @@ public class LocalTester {
             StdOut.println((questions.length + 1) + ". User");
             StdOut.println((questions.length + 2) + ". Network");
             StdOut.println((questions.length + 3) + ". All");
-            
+
             StdOut.println("");
             input = in.readLine();
-            if (input.toLowerCase().replaceAll(" ", "").equals("all") || 
-                input.toLowerCase().replaceAll(" ", "").equals("user") ||
-                input.toLowerCase().replaceAll(" ", "").equals("network") ||
-                input.equals((questions.length + 1) + "") ||
-                input.equals((questions.length + 2) + "") ||
-                input.equals((questions.length + 3) + "")) {
+            if (input.toLowerCase().replaceAll(" ", "").equals("all") ||
+                    input.toLowerCase().replaceAll(" ", "").equals("user") ||
+                    input.toLowerCase().replaceAll(" ", "").equals("network") ||
+                    input.equals((questions.length + 1) + "") ||
+                    input.equals((questions.length + 2) + "") ||
+                    input.equals((questions.length + 3) + "")) {
                 break;
             }
             questionSelected = isValidQuestion(input);
@@ -31,14 +32,16 @@ public class LocalTester {
             for (int i = 0; i < questions.length; i++) {
                 testHandler.questionDecider(questions[i], new String[0]);
             }
-        } else if (input.toLowerCase().replaceAll(" ", "").equals("user") || input.equals((questions.length + 1) + "")) {
+        } else if (input.toLowerCase().replaceAll(" ", "").equals("user")
+                || input.equals((questions.length + 1) + "")) {
             String[] questionArgs = new String[0];
             for (int i = 0; i < questions.length; i++) {
                 if (questions[i].getQuestion().toLowerCase().indexOf("user class") != -1) {
                     testHandler.questionDecider(questions[i], questionArgs);
                 }
             }
-        } else if (input.toLowerCase().replaceAll(" ", "").equals("network") || input.equals((questions.length + 2) + "")) {
+        } else if (input.toLowerCase().replaceAll(" ", "").equals("network")
+                || input.equals((questions.length + 2) + "")) {
             String[] questionArgs = new String[0];
             for (int i = 0; i < questions.length; i++) {
                 if (questions[i].getQuestion().toLowerCase().indexOf("network class") != -1) {
@@ -52,7 +55,6 @@ public class LocalTester {
         testHandler.conclusion();
     }
 
-
     public static TesterQuestionEnum isValidQuestion(String input) {
         TesterQuestionEnum[] questions = TesterQuestionEnum.values();
         TesterQuestionEnum questionSelected = null;
@@ -61,7 +63,8 @@ public class LocalTester {
                 questionSelected = TesterQuestionEnum.valueOf(input);
                 break;
             } catch (Exception e) {
-                if (questions[i].getQuestion().toLowerCase().equals(input.toLowerCase()) || input.equals((i + 1) + "")) {
+                if (questions[i].getQuestion().toLowerCase().equals(input.toLowerCase())
+                        || input.equals((i + 1) + "")) {
                     questionSelected = questions[i];
                     break;
                 }
